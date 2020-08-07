@@ -1,0 +1,121 @@
+<DOCTYPE!>
+<html lang="en">
+<head>
+    <title>form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/normlize.css"/>
+    <script type="text/javascript">
+    function ReplaceForm(){
+      var IDofform="form-3";
+      var IDofDivWithform= "box1";
+      var IDforReplacement="for_replacement"
+      document.getElementById(IDofform).submit();
+      document.getElementById(IDofDivWithform).innerHTML=document.getElementById(IDforReplacement).innerHTML;
+
+    }
+    </script>
+
+</head>
+
+<body>
+  
+      <div id="box1" style="display: none;">
+        <form  id="form-3" method="POST" action="script.php">
+            <div class="inside">
+                
+                <div class="">
+                    <div class="">
+                      
+                      <input class="input-field" type="text" name="name"  placeholder="NAME">
+                    </div>
+
+                    <div class="" >
+                        <div class="">
+                          
+                          <input class="input-field" type="text" name="nationality"  placeholder="NATIONALITY">
+                        </div>
+
+                        <div class="">
+                            <div class="">
+                              <select class="input-field" id="" name="gender">
+                                <option selected>GENDER </option>
+                                <option value="FE">FEMALE</option>
+                                <option value="MA">MALE</option>
+                              </select>
+                            </div>
+
+                        <div class="">
+                            <div class="">
+                             
+                              <input class="input-field" type="text" name="university" placeholder="UNIVERSITY">
+                            </div>
+
+                           <div class="">
+                                <div class="">
+                                  
+                                  <input type="text" class="input-field" name="major " placeholder="MAJOR">
+                                </div>
+
+                                <div class="">
+                                    <div class="">
+                                      <select class="input-field" name="grad" >
+                                        <option selected>GRADUATED ? </option>
+                                        <option value="yes">YES</option>
+                                        <option value="no">NO</option>
+                                      </select>
+                                    </div>
+
+                                
+
+                                    <div class="">
+                                        <div class="">
+                                         
+                                          <input type="text" class="input-field" name="year" placeholder="YEAR OF GRADUATION">
+                                        </div>
+
+                                        <div class="">
+                                            <div class="">
+                                            
+                                              <input type="text" class="input-field" name="email" placeholder="EMAIL">
+                                            </div>
+
+                                            <div class="">
+                                                <div class="">
+                                                
+                                                  <input type="text" class="input-field" name="mobile" placeholder="MOBILE NUMBER">
+                                                </div>
+
+                                                <div class="">
+                                                    <div class="">
+                                                     
+                                                      <input type="text" class="input-field"  name="program" placeholder="NAME OF PROGRAM YOU PREFER">
+                                                    </div>
+         <div class="">
+            <div style= "text-align : center;" >                     
+             <button class="btnS" onclick="ReplaceForm()" type="submit" >SUBMIT</button>
+            </div>  
+               
+                  </div>
+                  </div>
+                </div>
+
+            </div>
+        </form>
+        <script type="text/javascript">
+          document.getElementById("box1").style.display = "block";
+          </script>
+    </div>
+
+    <div id="for_replacement" style="display:none">
+      <p>
+        <b>This replace the form when.....</b>
+      </p>
+      <br>heloo world ..
+
+    </div>    
+
+    
+</body>
+</html>

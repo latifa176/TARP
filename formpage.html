@@ -1,0 +1,192 @@
+<DOCTYPE!>
+<html lang="en">
+<head>
+    <title>form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/normlize.css"/>
+     
+    <script type="text/javascript">
+      function ReplaceForm(){
+        var IDofform="form-3";
+        var IDofDivWithform= "box1";
+        var IDforReplacement="for_replacement"
+        // Get a reference to the database service
+        var database = firebase.database();
+        writeUserData();
+
+        document.getElementById(IDofform).submit();
+        document.getElementById(IDofDivWithform).innerHTML=document.getElementById(IDforReplacement).innerHTML;
+        
+      }
+      //firebase database
+      function writeUserData() {
+        database.ref('TrainingRequests').set({
+        Name: document.getElementById("name").innerText,
+        Nationality: document.getElementById("nationality").value,
+        Gender: document.getElementById("gender").value,
+        University: document.getElementById("university").value,
+        Major: document.getElementById("major").value,
+        isGraduate: document.getElementById("grad").innerText,
+        YearOfGraduation: document.getElementById("year").innerText,
+        ContactInfo: document.getElementById("email").innerText+" "+document.getElementById("mobile").innerText
+       });
+      }
+
+      function getCurrentLevel(){
+        if(document.getElementById("graduated").selected){
+        document.getElementById("currentLevel").setAttribute("disabled","true");
+        document.getElementById("currentLevel").value="";
+        }
+        else document.getElementById("currentLevel").removeAttribute("disabled");
+      }
+      </script>
+
+</head>
+
+<body>
+  
+        <div  >
+          <img style=" width: 230px;
+            ; margin : 200px 150px 20px 150px;  float: left;" src="css/IT.png" alt="it logo"/>
+        </div>
+   
+
+    <div id="box1">
+        <form  id="form-3" style=" padding: 10px 50px 10px 100px ;
+        margin: 0px 0px 0px 0px ;
+        float: right; background-color: #222020; opacity: 0.7; "
+        method="POST" 
+        action="script.php"
+        >
+            <div class="inside">
+                
+                <div class="">
+                    <div class="">
+                      
+                      <input class="input-field" type="text" id="name" name="name" placeholder="NAME">
+                    </div>
+
+                    <div class="" >
+                        <div class="">
+                          
+                          <input class="input-field" type="text" id="nationality" name="nationality"  placeholder="NATIONALITY">
+                        </div>
+
+                        <div class="">
+                          <div class="">
+                           
+                            <input type="text" class="input-field"  id="residence" name="residence" placeholder="PLACE OF RESIDENCE">
+                          </div>
+
+                        <div class="">
+                            <div>
+                              <select  class="input-field" id="gender" name="gender" style=" color: #707070;" >
+                                <option  value=" " >GENDER </option>
+                                <option value="FE">FEMALE</option>
+                                <option value="MA">MALE</option>
+                              </select>
+                            </div>
+
+                        <div class="">
+                            <div class="">
+                             
+                              <input class="input-field" type="text" id="university" name="university" placeholder="UNIVERSITY">
+                            </div>
+
+                           <div class="">
+                                <div class="">
+                                  
+                                  <input type="text" class="input-field" id="major" name="major" placeholder="MAJOR">
+                                </div>
+
+                                <div class="">
+                                    <div class="">
+                                      <select class="input-field" id="grad" name="grad" onchange="getCurrentLevel()" style=" color: #707070;" >
+                                        <option selected>GRADUATED ? </option>
+                                        <option value="yes" id="graduated">YES</option>
+                                        <option value="no">NO</option>
+                                      </select>
+                                    </div>
+
+                                    <!--get current level for undergraduates -->
+                                    <div class="">
+                                      <div class="">
+                                        
+                                        <input type="text" class="input-field" id="currentLevel" name="currentLevel" placeholder="CURRENT LEVEL" disabled>
+                                      </div>
+
+                                    <div class="">
+                                        <div class="">
+                                         
+                                          <input type="text" class="input-field" id="year" name="year" placeholder="YEAR OF GRADUATION">
+                                        </div>
+
+                                        <div class="">
+                                            <div class="">
+                                            
+                                              <input type="text" class="input-field" id="email" name="email" placeholder="EMAIL">
+                                            </div>
+
+                                            <div class="">
+                                                <div class="">
+                                                
+                                                  <input type="text" class="input-field" id="mobile" name="mobile" placeholder="MOBILE NUMBER">
+                                                </div>
+
+                                                <div class="">
+                                                    <div class="">
+                                                     
+                                                      <input type="text" class="input-field"  id="program" name="program" placeholder="NAME OF PROGRAM YOU PREFER">
+                                                    </div>
+                                     <div class="">
+                                       <div style="text-align: center;">                     
+                                          <button class="btnS" type="submit" onclick="ReplaceForm()">SUBMIT</button>
+                                          <a href="https://www.itshieldsec.com/" target="_blank"> <button class="btnS" type="button">CANCEL </button></a>
+                                       </div>           
+                  </div>
+                  </div>
+
+
+                </form>
+
+                <script type="text/javascript">
+                  document.getElementById("box1").style.display = "block";
+                  </script>
+
+        </div>
+
+        <div id="for_replacement" style="display:none">
+          <p>
+            <b>THANK YOU FOR APPLICATION !</b>
+          </p>
+          <br>WE WILL CONTACT YOU SOON 
+    
+        </div>  
+        
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC2iGu2yMRBDcrI_njPNM3QZSDN2C1oOsk",
+    authDomain: "tarp-1ddeb.firebaseapp.com",
+    databaseURL: "https://tarp-1ddeb.firebaseio.com",
+    projectId: "tarp-1ddeb",
+    storageBucket: "tarp-1ddeb.appspot.com",
+    messagingSenderId: "488395778686",
+    appId: "1:488395778686:web:898de1c9fefc8b1ae0062f"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+</script>
+<script src="/__/firebase/init.js"></script>
+
+        </body>
+        </html>
