@@ -16,10 +16,53 @@
         var database = firebase.database();
         writeUserData();
 
-        document.getElementById(IDofform).submit();
-        document.getElementById(IDofDivWithform).innerHTML=document.getElementById(IDforReplacement).innerHTML;
+        validateInput();
+        //document.getElementById(IDofform).submit();
+        //document.getElementById(IDofDivWithform).innerHTML=document.getElementById(IDforReplacement).innerHTML;
         
       }
+
+      function validateInput(){
+        var nameInput=document.getElementById("name").value;
+        var nationalityInput=document.getElementById("nationality").value;
+        var genderInput=document.getElementById("gender").value;
+        var universityInput=document.getElementById("university").value;
+        var majorInput=document.getElementById("major").value;
+        var isGraduateInput=document.getElementById("grad").value;
+        var yearOfGraduationInput=document.getElementById("year").value;
+        var emailInput=document.getElementById("email").value;
+        var mobileInput=document.getElementById("mobile").value;
+
+        if(nameInput!==""){
+          //name is not empty
+          if(/\S/.test(nationalityInput)){
+            //nationality is not empty
+            if(/\S/.test(genderInput)){
+              //gender is not empty
+              if(/\S/.test(universityInput)){
+                //university is not empty
+                if(/\S/.test(majorInput)){
+                  //major is not empty
+                  if(/\S/.test(isGraduateInput)){
+                    //grad is not empty
+                    if(/\S/.test(yearOfGraduationInput)){
+                      //year is not empty
+                      if(/\S/.test(emailInput)){
+                        //email is not empty
+                        if(/\S/.test(mobileInput)){
+                          //mobile is not empty
+                          document.getElementById(IDofform).submit();
+                        } else { window.location.href="formpage.html"; alert("Please enter your mobile number");}
+                      } else { window.location.href="formpage.html"; alert("Please enter your email");}
+                    } else { window.location.href="formpage.html"; alert("Please enter the year of your graduation");}
+                  } else { window.location.href="formpage.html"; alert("Please select whether you are a graduate or not");}
+                } else { window.location.href="formpage.html"; alert("Please enter your major");}
+              } else { window.location.href="formpage.html"; alert("Please enter your university");}
+            } else { window.location.href="formpage.html"; alert("Please select your gender");}
+          } else { window.location.href="formpage.html"; alert("Please enter your nationality");}
+        } else { window.location.href="formpage.html"; alert("Please enter your name");}
+      }
+      
       //firebase database
       function writeUserData() {
         database.ref('TrainingRequests').set({
@@ -142,7 +185,7 @@
                                                     </div>
                                      <div class="">
                                        <div style="text-align: center;">                     
-                                          <button class="btnS" type="submit" onclick="ReplaceForm()">SUBMIT</button>
+                                          <button class="btnS" type="submit" onclick="validateInput()">SUBMIT</button>
                                           <a href="https://www.itshieldsec.com/" target="_blank"> <button class="btnS" type="button">CANCEL </button></a>
                                        </div>           
                   </div>

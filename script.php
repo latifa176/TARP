@@ -4,13 +4,6 @@
 
   </head>
   <body>
-  <div id="for_replacement" style="display:none">
-          <p>
-            <b>THANK YOU FOR APPLICATION !</b>
-          </p>
-          <br>WE WILL CONTACT YOU SOON 
-    
-        </div>  
   <?php include 'submittedformpage.html';
 // define variables and set to empty values
 $nameErr = $emailErr =$nationalityErr=$universityErr=$majorErr= $mobileErr=$genderErr =$programErr= $yearErr =$gradErr = "";
@@ -48,6 +41,52 @@ function CloseCon($conn)
  $conn -> close();
  }
  
+ if($_SERVER["REQUEST_METHOD"]=="POST"){
+
+  if(!empty($name)){
+    //name is not empty
+    if(!empty($nationality)){
+      //nationality is not empty
+      if(!empty($university)){
+        //university is not empty
+        if(!empty($major)){
+          //major is not empty
+          if(!empty($year)){
+            //year is not empty
+            if(!empty($mobile)){
+              //mobile is not empty
+              if(!empty($gender)){
+                //gender is not empty
+                if(!empty($residence)){
+                  //residence is not empty
+                  if(!empty($grad)){
+                    //grad is not empty
+                    if($grad==0 && empty($currentLevel)){ header("Location: formpage.html"); echo '<script>alert("Please enter your current level or select Yes from Graduate")</script>';}
+                    if(!empty($email)){
+                      //email is not empty
+                      $conn = OpenCon();
+                      //echo "Connected Successfully";
+                      $sql="INSERT INTO applicants (name,nationality,placeOfResidence,gender,university,major,isGraduate,currentLevel,yearOfGraduation,contactInfo) 
+                      VALUES ('$name','$nationality','$residence','$gender','$university','$major','$grad','$currentLevel','$year','$email/$mobile')";
+                      if (mysqli_query($conn, $sql)) {
+                          //echo "New record created successfully";
+                    } else {
+                          //echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    }
+                      //mysql_close();
+                      CloseCon($conn);
+                    } else { header("Location: formpage.html"); echo '<script>alert("Please enter your email")</script>';}
+                  } else { header("Location: formpage.html"); echo '<script>alert("Please select whether you are a graduate or not")</script>';}
+                } else { header("Location: formpage.html"); echo '<script>alert("Please enter your place of residence")</script>';}
+              } else { header("Location: formpage.html"); echo '<script>alert("Please select your gender")</script>';}
+            } else { header("Location: formpage.html"); echo '<script>alert("Please enter your mobile number")</script>';}
+          } else { header("Location: formpage.html"); echo '<script>alert("Please enter the year of your graduation")</script>';}
+        } else { header("Location: formpage.html"); echo '<script>alert("Please enter your major")</script>';}
+      } else { header("Location: formpage.html"); echo '<script>alert("Please enter your university")</script>';}
+    } else { header("Location: formpage.html"); echo '<script>alert("Please enter your nationality")</script>';}
+  } else { header("Location: formpage.html"); echo '<script>alert("Please enter your name")</script>';}
+
+ }
 /*
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -154,17 +193,7 @@ if (empty($_POST["grad"])) {
     }
   }*/
 
-  $conn = OpenCon();
-  //echo "Connected Successfully";
-  $sql="INSERT INTO applicants (name,nationality,placeOfResidence,gender,university,major,isGraduate,currentLevel,yearOfGraduation,contactInfo) 
-  VALUES ('$name','$nationality','$residence','$gender','$university','$major','$grad','$currentLevel','$year','$email/$mobile')";
-  if (mysqli_query($conn, $sql)) {
-      //echo "New record created successfully";
-} else {
-      //echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-  //mysql_close();
-  CloseCon($conn);
+  
 
   function test_input($data) {
     $data = trim($data);
