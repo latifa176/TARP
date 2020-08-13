@@ -43,9 +43,9 @@ function CloseCon($conn)
  
  if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-  if(!empty($name)){
+  if(!empty($name) AND preg_match("/^[a-zA-Z ]*$/",$name)){
     //name is not empty
-    if(!empty($nationality)){
+    if(!empty($nationality) AND preg_match("/^[a-zA-Z ]*$/",$nationality)){
       //nationality is not empty
       if(!empty($university)){
         //university is not empty
@@ -53,7 +53,7 @@ function CloseCon($conn)
           //major is not empty
           if(!empty($year)){
             //year is not empty
-            if(!empty($mobile)){
+            if(!empty($mobile) AND preg_match("/^[0-9 ]*$/",$mobile)){
               //mobile is not empty
               if(!empty($gender)){
                 //gender is not empty
@@ -62,7 +62,7 @@ function CloseCon($conn)
                   if(!empty($grad)){
                     //grad is not empty
                     if($grad==0 && empty($currentLevel)){ header("Location: formpage.html"); echo '<script>alert("Please enter your current level or select Yes from Graduate")</script>';}
-                    if(!empty($email)){
+                    if(!empty($email) AND filter_var($email, FILTER_VALIDATE_EMAIL)){
                       //email is not empty
                       $conn = OpenCon();
                       //echo "Connected Successfully";
