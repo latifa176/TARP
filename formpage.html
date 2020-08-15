@@ -15,8 +15,7 @@
         // Get a reference to the database service
         var database = firebase.database();
         writeUserData();
-
-        validateInput();
+validateInput();
         //document.getElementById(IDofform).submit();
         //document.getElementById(IDofDivWithform).innerHTML=document.getElementById(IDforReplacement).innerHTML;
         
@@ -62,7 +61,6 @@
           } else { window.location.href="formpage.html"; alert("Please enter your nationality");}
         } else { window.location.href="formpage.html"; alert("Please enter your name");}
       }
-      
       //firebase database
       function writeUserData() {
         database.ref('TrainingRequests').set({
@@ -81,8 +79,9 @@
         if(document.getElementById("graduated").selected){
         document.getElementById("currentLevel").setAttribute("disabled","true");
         document.getElementById("currentLevel").value="";
+        document.getElementById("currentLevel").setAttribute("style","background-color: #707070");
         }
-        else document.getElementById("currentLevel").removeAttribute("disabled");
+        else {document.getElementById("currentLevel").removeAttribute("disabled"); document.getElementById("currentLevel").setAttribute("style","background-color: transparent"); }
       }
       </script>
 
@@ -108,25 +107,25 @@
                 <div class="">
                     <div class="">
                       
-                      <input class="input-field" type="text" id="name" name="name" placeholder="NAME">
+                      <input class="input-field" type="text" id="name" name="name" placeholder="NAME*">
                     </div>
 
                     <div class="" >
                         <div class="">
                           
-                          <input class="input-field" type="text" id="nationality" name="nationality"  placeholder="NATIONALITY">
+                          <input class="input-field" type="text" id="nationality" name="nationality"  placeholder="NATIONALITY*">
                         </div>
 
                         <div class="">
                           <div class="">
                            
-                            <input type="text" class="input-field"  id="residence" name="residence" placeholder="PLACE OF RESIDENCE">
+                            <input type="text" class="input-field"  id="residence" name="residence" placeholder="PLACE OF RESIDENCE*">
                           </div>
 
                         <div class="">
                             <div>
                               <select  class="input-field" id="gender" name="gender" style=" color: #707070;" >
-                                <option  value=" " >GENDER </option>
+                                <option  value=" " >GENDER* </option>
                                 <option value="FE">FEMALE</option>
                                 <option value="MA">MALE</option>
                               </select>
@@ -135,19 +134,19 @@
                         <div class="">
                             <div class="">
                              
-                              <input class="input-field" type="text" id="university" name="university" placeholder="UNIVERSITY">
+                              <input class="input-field" type="text" id="university" name="university" placeholder="UNIVERSITY*">
                             </div>
 
                            <div class="">
                                 <div class="">
                                   
-                                  <input type="text" class="input-field" id="major" name="major" placeholder="MAJOR">
+                                  <input type="text" class="input-field" id="major" name="major" placeholder="MAJOR*">
                                 </div>
 
                                 <div class="">
                                     <div class="">
                                       <select class="input-field" id="grad" name="grad" onchange="getCurrentLevel()" style=" color: #707070;" >
-                                        <option selected>GRADUATED ? </option>
+                                        <option selected>GRADUATED?* </option>
                                         <option value="yes" id="graduated">YES</option>
                                         <option value="no">NO</option>
                                       </select>
@@ -157,25 +156,25 @@
                                     <div class="">
                                       <div class="">
                                         
-                                        <input type="text" class="input-field" id="currentLevel" name="currentLevel" placeholder="CURRENT LEVEL" disabled>
+                                        <input type="text" class="input-field" id="currentLevel" name="currentLevel" placeholder="CURRENT LEVEL*" disabled>
                                       </div>
 
                                     <div class="">
                                         <div class="">
                                          
-                                          <input type="text" class="input-field" id="year" name="year" placeholder="YEAR OF GRADUATION">
+                                          <input type="text" class="input-field" id="year" name="year" placeholder="YEAR OF GRADUATION*">
                                         </div>
 
                                         <div class="">
                                             <div class="">
                                             
-                                              <input type="text" class="input-field" id="email" name="email" placeholder="EMAIL">
+                                              <input type="text" class="input-field" id="email" name="email" placeholder="EMAIL*">
                                             </div>
 
                                             <div class="">
                                                 <div class="">
                                                 
-                                                  <input type="text" class="input-field" id="mobile" name="mobile" placeholder="MOBILE NUMBER">
+                                                  <input type="text" class="input-field" id="mobile" name="mobile" placeholder="MOBILE NUMBER*">
                                                 </div>
 
                                                 <div class="">

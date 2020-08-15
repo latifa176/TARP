@@ -17,13 +17,11 @@ $mobile = test_input($_POST["mobile"]);
 $program = test_input($_POST["program"]);
 $gender = test_input($_POST["gender"]);
 $residence = test_input($_POST["residence"]);
-$currentLevel = test_input($_POST["currentLevel"]);
+
+if(empty($_POST["currentLevel"])) $currentLevel="";
+else $currentLevel = test_input($_POST["currentLevel"]);
 
 $grad = test_input($_POST["grad"]);
-if($grad=="no") $grad=0;
-else if($grad="yes") $grad=1;
-else $grad="";
-
 $email = test_input($_POST["email"]);
 
 function OpenCon()
@@ -60,7 +58,7 @@ function CloseCon($conn)
               //major is not empty
               if(!empty($grad)){
                 //grad is not empty
-                if($grad==0 AND empty($currentLevel)){echo "<script>alert('Please enter your current level. Or select Yes from GRADUATE'); window.location.href='formpage.html'; </script>"; exit("Please enter your current level");}
+                if($grad=="no" AND empty($currentLevel)){echo "<script>alert('Please enter your current level. Or select Yes from GRADUATE'); window.location.href='formpage.html'; </script>"; exit("Please enter your current level");}
                 if(!empty($year)){
                   //year is not empty
                   if(!empty($email)){
@@ -72,25 +70,26 @@ function CloseCon($conn)
 
                       $conn = OpenCon();
                       //echo "Connected Successfully";
+                      if($grad=="no") $grad=0; else $grad=1;
                       $sql="INSERT INTO applicants (name,nationality,placeOfResidence,gender,university,major,isGraduate,currentLevel,yearOfGraduation,contactInfo) 
                       VALUES ('$name','$nationality','$residence','$gender','$university','$major','$grad','$currentLevel','$year','$email/$mobile')";
                       if (mysqli_query($conn, $sql)) {
                           //echo "New record created successfully";
                     } else {
-                          //echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                     }
                       //mysql_close();
                       CloseCon($conn);
-                    } else { header("Location: formpage.html"); echo '<script>alert("Please enter your mobile number")</script>';}
-                  } else { header("Location: formpage.html"); echo '<script>alert("Please enter your email")</script>';}
-                } else { header("Location: formpage.html"); echo '<script>alert("Please enter the year of your graduation")</script>';}
-              } else { header("Location: formpage.html"); echo '<script>alert("Please select whether you are a graduate or not")</script>';}
-            } else { header("Location: formpage.html"); echo '<script>alert("Please enter your major")</script>';}
-          } else { header("Location: formpage.html"); echo '<script>alert("Please enter your university")</script>';}
-        } else { header("Location: formpage.html"); echo '<script>alert("Please select your gender")</script>';}
-      } else { header("Location: formpage.html"); echo '<script>alert("Please enter your place of residence")</script>';}
-    } else { header("Location: formpage.html"); echo '<script>alert("Please enter your nationality")</script>';}
-  } else { header("Location: formpage.html"); echo '<script>alert("Please enter your name")</script>';}
+                    } else { echo '<script>alert("Please enter your mobile number"); window.location.href="formpage.html";</script>';}
+                  } else { echo '<script>alert("Please enter your email"); window.location.href="formpage.html";</script>';}
+                } else { echo '<script>alert("Please enter the year of your graduation"); window.location.href="formpage.html";</script>';}
+              } else { echo '<script>alert("Please select whether you are a graduate or not"); window.location.href="formpage.html";</script>';}
+            } else { echo '<script>alert("Please enter your major"); window.location.href="formpage.html";</script>';}
+          } else { echo '<script>alert("Please enter your university"); window.location.href="formpage.html";</script>';}
+        } else { echo '<script>alert("Please select your gender"); window.location.href="formpage.html";</script>';}
+      } else { echo '<script>alert("Please enter your place of residence"); window.location.href="formpage.html";</script>';}
+    } else { echo '<script>alert("Please enter your nationality"); window.location.href="formpage.html";</script>';}
+  } else { echo '<script>alert("Please enter your name"); window.location.href="formpage.html";</script>';}
 
  }
 /*
