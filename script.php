@@ -23,6 +23,7 @@ else $currentLevel = test_input($_POST["currentLevel"]);
 
 $grad = test_input($_POST["grad"]);
 $email = test_input($_POST["email"]);
+$program = test_input($_POST["program"]);
 
 function OpenCon()
  {
@@ -67,19 +68,22 @@ function CloseCon($conn)
                     if(!empty($mobile)){
                       //mobile is not empty
                       if(!preg_match("/^[0-9 ]*$/",$mobile)){echo "<script>alert('Please enter your mobile number. Only numbers allowed'); window.location.href='formpage.html'; </script>"; exit("Please enter your mobile number. Only numbers allowed");}
-
-                      $conn = OpenCon();
-                      //echo "Connected Successfully";
-                      if($grad=="no") $grad=0; else $grad=1;
-                      $sql="INSERT INTO applicants (name,nationality,placeOfResidence,gender,university,major,isGraduate,currentLevel,yearOfGraduation,contactInfo) 
-                      VALUES ('$name','$nationality','$residence','$gender','$university','$major','$grad','$currentLevel','$year','$email/$mobile')";
-                      if (mysqli_query($conn, $sql)) {
-                          //echo "New record created successfully";
-                    } else {
-                          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                    }
-                      //mysql_close();
-                      CloseCon($conn);
+                      if(!empty($program)){
+                        //program code is not empty
+                        if(!preg_match("/^[0-9 ]*$/",$program)){echo "<script>alert('Please enter the code of the program for which you would like to apply. Only numbers allowed'); window.location.href='formpage.html'; </script>"; exit("Please enter program code. Only numbers allowed");}
+                        $conn = OpenCon();
+                        //echo "Connected Successfully";
+                        if($grad=="no") $grad=0; else $grad=1;
+                        $sql="INSERT INTO applicants (name,nationality,placeOfResidence,gender,university,major,isGraduate,currentLevel,yearOfGraduation,contactInfo,programcode) 
+                        VALUES ('$name','$nationality','$residence','$gender','$university','$major','$grad','$currentLevel','$year','$email/$mobile','$program')";
+                        if (mysqli_query($conn, $sql)) {
+                            //echo "New record created successfully";
+                      } else {
+                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                      }
+                        //mysql_close();
+                        CloseCon($conn);
+                      } else { echo '<script>alert("Please enter the code of the program for which you would like to apply"); window.location.href="formpage.html";</script>';}
                     } else { echo '<script>alert("Please enter your mobile number"); window.location.href="formpage.html";</script>';}
                   } else { echo '<script>alert("Please enter your email"); window.location.href="formpage.html";</script>';}
                 } else { echo '<script>alert("Please enter the year of your graduation"); window.location.href="formpage.html";</script>';}
