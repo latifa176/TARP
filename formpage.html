@@ -12,10 +12,7 @@
         var IDofform="form-3";
         var IDofDivWithform= "box1";
         var IDforReplacement="for_replacement"
-        // Get a reference to the database service
-        var database = firebase.database();
-        writeUserData();
-validateInput();
+        validateInput();
         //document.getElementById(IDofform).submit();
         //document.getElementById(IDofDivWithform).innerHTML=document.getElementById(IDforReplacement).innerHTML;
         
@@ -31,6 +28,7 @@ validateInput();
         var yearOfGraduationInput=document.getElementById("year").value;
         var emailInput=document.getElementById("email").value;
         var mobileInput=document.getElementById("mobile").value;
+        var programInput=document.getElementById("program").value;
 
         if(nameInput!==""){
           //name is not empty
@@ -50,7 +48,9 @@ validateInput();
                         //email is not empty
                         if(/\S/.test(mobileInput)){
                           //mobile is not empty
+                          if(/\S/.test(programInput)){
                           document.getElementById(IDofform).submit();
+                          } else { window.location.href="formpage.html"; alert("Please enter your desired program type");}
                         } else { window.location.href="formpage.html"; alert("Please enter your mobile number");}
                       } else { window.location.href="formpage.html"; alert("Please enter your email");}
                     } else { window.location.href="formpage.html"; alert("Please enter the year of your graduation");}
@@ -60,19 +60,6 @@ validateInput();
             } else { window.location.href="formpage.html"; alert("Please select your gender");}
           } else { window.location.href="formpage.html"; alert("Please enter your nationality");}
         } else { window.location.href="formpage.html"; alert("Please enter your name");}
-      }
-      //firebase database
-      function writeUserData() {
-        database.ref('TrainingRequests').set({
-        Name: document.getElementById("name").innerText,
-        Nationality: document.getElementById("nationality").value,
-        Gender: document.getElementById("gender").value,
-        University: document.getElementById("university").value,
-        Major: document.getElementById("major").value,
-        isGraduate: document.getElementById("grad").innerText,
-        YearOfGraduation: document.getElementById("year").innerText,
-        ContactInfo: document.getElementById("email").innerText+" "+document.getElementById("mobile").innerText
-       });
       }
 
       function getCurrentLevel(){
@@ -179,8 +166,12 @@ validateInput();
 
                                                 <div class="">
                                                     <div class="">
-                                                     
-                                                      <input type="text" class="input-field"  id="program" name="program" placeholder="PROGRAM CODE*">
+                                                      <select class="input-field" id="program" name="program" onchange="getCurrentLevel()" style=" color: #707070;" >
+                                                        <option value="" selected>APPLY FOR* </option>
+                                                        <option value="COOP training" id="coop">COOP training</option>
+                                                        <option value="eLearning">e-Learning</option>
+                                                        <option value="induction">Induction training</option>
+                                                      </select>
                                                     </div>
                                      <div class="">
                                        <div style="text-align: center;">                     
@@ -207,28 +198,5 @@ validateInput();
     
         </div>  
         
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyC2iGu2yMRBDcrI_njPNM3QZSDN2C1oOsk",
-    authDomain: "tarp-1ddeb.firebaseapp.com",
-    databaseURL: "https://tarp-1ddeb.firebaseio.com",
-    projectId: "tarp-1ddeb",
-    storageBucket: "tarp-1ddeb.appspot.com",
-    messagingSenderId: "488395778686",
-    appId: "1:488395778686:web:898de1c9fefc8b1ae0062f"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-</script>
-<script src="/__/firebase/init.js"></script>
-
         </body>
         </html>
