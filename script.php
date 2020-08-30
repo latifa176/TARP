@@ -65,7 +65,7 @@ function CloseCon($conn)
                     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){echo "<script>alert('Incorrect email format. Please enter a correct email'); window.location.href='formpage.html'; </script>"; exit("Please enter a correct email");}
                     if(!empty($mobile)){
                       //mobile is not empty
-                      if(!preg_match("/^[0-9 ]*$/",$mobile OR strlen($mobile)<10)){echo "<script>alert('Please enter your mobile number. Only numbers allowed'); window.location.href='formpage.html'; </script>"; exit("Please enter your mobile number. Only numbers allowed");}
+                      if(!preg_match("/^[0-9 ]*$/",$mobile)){echo "<script>alert('Please enter your mobile number. Only numbers allowed'); window.location.href='formpage.html'; </script>"; exit("Please enter your mobile number. Only numbers allowed");}
                       if(!empty($program)){
                         //program code is not empty
                         $conn = OpenCon();
