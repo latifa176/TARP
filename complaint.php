@@ -3,7 +3,7 @@ $sender = 'sakuranbo123.s3@gmail.com';
 $headers = 'From:' . $sender;
 
 if(isset($_POST['submit']) AND !empty($_POST['complaint'])){
-  if(mail("sakuranbo123.s3@gmail.com", "Complaint Message", $_POST['complaint'], $headers)) echo "Email sent successfully";
+  if(mail("sakuranbo123.s3@gmail.com", "Complaint Message", $_POST['complaint'], $headers)) header("Location: submittedComplaint.html");
   else echo "Email not sent";
 }
 ?>
